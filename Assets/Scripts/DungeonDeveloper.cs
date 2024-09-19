@@ -89,11 +89,12 @@ public class DungeonDeveloper : EditorWindow
     private void Update()
     {
 
-        if (test) { 
+        if (test) {
 
-            Vector3 spawnPos = ray.GetPoint(15);
-
-            testobj.transform.position = ray.GetPoint(distance);
+            Plane plane = new Plane(Vector3.up, 0);
+            plane.Raycast(ray, out distance);
+            Vector3 spawnPos = ray.GetPoint(distance);
+            testobj.transform.position = new Vector3(Mathf.Round(spawnPos.x), spawnPos.y, Mathf.Round(spawnPos.z));
 
         }
 
